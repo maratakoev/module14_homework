@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Приложение</title>
+</head>
+<body>
+  <input type="number" id="numberInput" placeholder="Введите число от 1 до 10">
+  <button id="btn">Отправить</button>
+  <div id="result"></div>
+
+  <script>
+    const button = document.getElementById('btn');
+    const numberInput = document.getElementById('numberInput');
+    const resultDiv = document.getElementById('result');
+
+    button.addEventListener('click', () => {
+      const number = parseInt(numberInput.value);
+
+      if (number < 1 || number > 10 || isNaN(number)) {
+        resultDiv.textContent = 'Число вне диапазона от 1 до 10';
+      } else {
+        const url = https://picsum.photos/v2/list?limit=${number};
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            // Дальнейшие действия с ответом
+          } else {
+            console.error('Ошибка запроса');
+          }
+        };
+        xhr.send();
+      }
+    });
+  </script>
+</body>
+</html>
+
